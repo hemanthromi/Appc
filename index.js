@@ -92,6 +92,16 @@ app.get('/login', (req, res) => {
     res.render('login');
 });
 
+app.get('/logout', (req, res) => {
+    req.logout(function(err) {
+        if (err) { 
+            return next(err); 
+        }
+        req.flash('success', 'You are successfully logged out.');
+        res.redirect('/login');
+    });
+});
+
 app.get('/register', (req, res) => {
     res.render('register', { error: req.flash('error') });
 });
